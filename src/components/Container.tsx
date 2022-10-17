@@ -5,7 +5,7 @@ import getData from "../api/ApiService";
 
 const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04"; // this isn't a good idea
 
-const Container: React.FunctionComponent = () => {
+const Container: React.FC = () => {
   const [res, setResult] = useState({
     temperature: "",
     city: "",
