@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShowWeather } from './components/ShowWeather';
 import './App.css';
-import { WeatherForm } from './components/Form';
+import { WeatherForm } from './components/WeatherForm';
 import { getData } from './api/ApiService';
 
 const apiKey = '8d2de98e089f1c28e1a22fc19a24ef04';
@@ -33,7 +33,7 @@ export const App: React.FunctionComponent = () => {
       }
     };
     fetchData();
-  }, [city]);
+  }, [city, country]);
 
   const setValues = async (e: React.FormEvent<HTMLFormElement>) => {
     setCity(e.target[0].value);
