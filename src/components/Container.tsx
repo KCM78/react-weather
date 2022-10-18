@@ -35,10 +35,14 @@ const Container: React.FC = () => {
     fetchData();
   }, [city, country]);
 
-  const setValues = async (e: React.FormEvent<HTMLFormElement>) => {
+  const setValues = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setCity(e.target[0].value);
-    setCountry(e.target[1].value);
+    const target = e.target as typeof e.target & {
+      city: { value: string };
+      country: { value: string };
+    };
+    setCity(target.city.value);
+    setCountry(target.country.value);
   };
 
   return (

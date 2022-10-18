@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ISetValues {
-  setValues(e: React.FormEvent<HTMLFormElement>): Promise<void>;
+  setValues(e: React.SyntheticEvent): Promise<void>;
 }
 
 const WeatherForm: React.FC<ISetValues> = ({ setValues }) => {
