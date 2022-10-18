@@ -1,12 +1,9 @@
 import React from "react";
+import { FormProps } from "./types";
 
-interface ISetValues {
-  setValues(e: React.SyntheticEvent): Promise<void>;
-}
-
-const WeatherForm: React.FC<ISetValues> = ({ setValues }) => {
+const WeatherForm: React.FC<FormProps> = ({ handleSubmit }: FormProps) => {
   return (
-    <form onSubmit={setValues}>
+    <form onSubmit={handleSubmit}>
       <input type="text" name="city" placeholder="City..." />
       <input type="text" name="country" placeholder="Country..." />
       <button type="submit">Get Weather</button>

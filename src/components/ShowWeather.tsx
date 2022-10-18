@@ -1,20 +1,13 @@
 import React from "react";
+import { WeatherProps } from "./types";
 
-interface IWeatherProps {
-  city: string;
-  country: string;
-  description: string;
-  humidity: string;
-  temperature: string;
-}
-
-const ShowWeather: React.FC<IWeatherProps> = ({
+const ShowWeather: React.FC<WeatherProps> = ({
   city,
   country,
   temperature,
   humidity,
   description,
-}: IWeatherProps) => {
+}: WeatherProps) => {
   return (
     <div id="weather-results">
       {city && country && (
