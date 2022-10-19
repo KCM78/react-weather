@@ -5,11 +5,20 @@ const getData = async (
   country: string,
   apiKey: string
 ): Promise<CurrentWeatherDataResponse> => {
-  const response = await fetch(
+  const weatherData = await fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}&units=metric`
-  ).then((data) => data.json());
+  )
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("There was a problem fetching data", {
+        cause: `${response.status}: ${response.statusText}`,
+      });
+    })
+    .catch((error) => console.error(error, error.cause));
 
-  return response;
+  return weatherData;
 };
 
 export default getData;
