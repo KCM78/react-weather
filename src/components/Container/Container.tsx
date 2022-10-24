@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ShowWeather from "./ShowWeather";
-import WeatherForm from "./WeatherForm";
-import getData from "../api/ApiService";
-import { WeatherFormElement, WeatherProps } from "./types";
+import ShowWeather from "../ShowWeather/ShowWeather";
+import WeatherForm from "../WeatherForm/WeatherForm";
+import getData from "../../api/ApiService";
+import { WeatherFormElement, WeatherProps } from "../types";
 
 const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04"; // this isn't a good idea
 
