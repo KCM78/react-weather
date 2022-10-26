@@ -38,7 +38,9 @@ const App: React.FC = (): JSX.Element => {
     fetchData();
   }, [city, country]);
 
-  const handleSubmit = async (event: React.FormEvent<WeatherFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<WeatherFormElement>
+  ): Promise<void> => {
     event.preventDefault();
     setCity(event.currentTarget.elements.city.value);
     setCountry(event.currentTarget.elements.country.value);

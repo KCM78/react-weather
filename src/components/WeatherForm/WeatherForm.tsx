@@ -1,7 +1,9 @@
 import React from "react";
 import { FormProps } from "../types";
 
-const WeatherForm: React.FC<FormProps> = ({ handleSubmit }: FormProps): JSX.Element => {
+const WeatherForm: React.FC<FormProps> = ({
+  handleSubmit,
+}: FormProps): JSX.Element => {
   return (
     <form onSubmit={handleSubmit}>
       <input type="text" name="city" placeholder="City..." />
