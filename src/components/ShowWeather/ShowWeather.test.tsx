@@ -7,8 +7,8 @@ const props = {
   country: "UK",
   temperature: "12",
   humidity: "40",
-  description: "Cloudy"
-}
+  description: "Cloudy",
+};
 
 let component: RenderResult;
 
@@ -27,12 +27,12 @@ describe("WeatherForm", () => {
 
   it("should display the temperature", () => {
     expect(component.getByText("Temperature: 12C")).toBeTruthy();
-  })
+  });
 
   it("should display the humidity", () => {
     expect(component.getByText("Humidity: 40")).toBeTruthy();
   });
-  
+
   it("should display the conditions", () => {
     expect(component.getByText("Conditions: Cloudy")).toBeTruthy();
   });

@@ -1,5 +1,11 @@
 import React from "react";
-import { act, render, RenderResult, screen, fireEvent } from "@testing-library/react";
+import {
+  act,
+  render,
+  RenderResult,
+  screen,
+  fireEvent,
+} from "@testing-library/react";
 import WeatherForm from "./WeatherForm";
 
 const handleSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
@@ -20,7 +26,7 @@ describe("WeatherForm", () => {
 
   it("should render the country input field", () => {
     expect(component.getByPlaceholderText("Country...")).toBeTruthy();
-  })
+  });
 
   it("should render a submit button", () => {
     expect(component.getByText("Get Weather")).toBeTruthy();
@@ -37,5 +43,4 @@ describe("WeatherForm", () => {
       expect(handleSubmit).toHaveBeenCalled();
     });
   });
-
 });
