@@ -9,7 +9,7 @@ const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04"; // this isn't a good idea
 
 type WeatherData = WeatherProps;
 
-const App: React.FC = () => {
+const App: React.FC = (): JSX.Element => {
   const [weatherData, setWeatherData] = useState<WeatherData>({
     city: "",
     country: "",
@@ -38,7 +38,7 @@ const App: React.FC = () => {
     fetchData();
   }, [city, country]);
 
-  const handleSubmit = async (event: React.FormEvent<WeatherFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<WeatherFormElement>): Promise<void> => {
     event.preventDefault();
     setCity(event.currentTarget.elements.city.value);
     setCountry(event.currentTarget.elements.country.value);

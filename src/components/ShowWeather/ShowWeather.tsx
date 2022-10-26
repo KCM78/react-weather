@@ -7,7 +7,7 @@ const ShowWeather: React.FC<WeatherProps> = ({
   temperature,
   humidity,
   description,
-}: WeatherProps) => {
+}: WeatherProps): JSX.Element => {
   return (
     <div id="weather-results">
       {city && country && (
