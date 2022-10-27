@@ -12,13 +12,28 @@ const getData = async (
       if (response.ok) {
         return response.json();
       }
+      if (response.status === 401) {
+        throw new Error("Unauthorised access");
+      }
       throw new Error("There was a problem fetching data", {
         cause: `${response.status}: ${response.statusText}`,
       });
     })
-    .catch((error) => console.error(error, error.cause));
+    .catch((error: Error) => {
+      return {
+        errorFlag: true,
+        errorMessage: error.message,
+      };
+    });
 
-  return weatherData;
+  if (weatherData.errorFlag) {
+    return weatherData;
+  }
+  return {
+    ...weatherData,
+    errorFlag: false,
+    errorMessage: "",
+  };
 };
 
 export default getData;

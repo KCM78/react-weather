@@ -8,6 +8,8 @@ const props = {
   temperature: "12",
   humidity: "40",
   description: "Cloudy",
+  errorFlag: false,
+  errorMessage: "",
 };
 
 let component: RenderResult;

@@ -13,6 +13,8 @@ export interface WeatherProps {
   description: string;
   humidity: string;
   temperature: string;
+  errorFlag: boolean;
+  errorMessage: string;
 }
 
 export interface FormProps {

@@ -16,6 +16,8 @@ const App: React.FC = (): JSX.Element => {
     temperature: "",
     humidity: "",
     description: "",
+    errorFlag: false,
+    errorMessage: "",
   });
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
@@ -26,11 +28,13 @@ const App: React.FC = (): JSX.Element => {
         const result = await getData(city, country, apiKey);
         if (result !== undefined) {
           setWeatherData({
-            temperature: result.main.temp.toString(),
+            temperature: result.main?.temp.toString(),
             city: result.name,
-            country: result.sys.country,
-            humidity: result.main.humidity.toString(),
-            description: result.weather[0].description,
+            country: result.sys?.country,
+            humidity: result.main?.humidity.toString(),
+            description: result.weather?.[0].description,
+            errorFlag: result.errorFlag,
+            errorMessage: result.errorMessage,
           });
         }
       }
@@ -50,7 +54,11 @@ const App: React.FC = (): JSX.Element => {
     <div id="main-container">
       <h1>Simple React Weather App</h1>
       <WeatherForm handleSubmit={handleSubmit} />
-      <ShowWeather {...weatherData} />
+      {!weatherData.errorFlag ? (
+        <ShowWeather {...weatherData} />
+      ) : (
+        <p>there was an error {weatherData.errorMessage}</p>
+      )}
     </div>
   );
 };

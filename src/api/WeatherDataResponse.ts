@@ -1,3 +1,5 @@
+import { ErrorResponse } from "./ErrorResponse";
+
 interface Coord {
   lon: number;
   lat: number;
@@ -37,7 +39,7 @@ interface Sys {
   sunset: number;
 }
 
-export interface CurrentWeatherDataResponse {
+export interface CurrentWeatherDataResponse extends ErrorResponse {
   coord: Coord;
   weather: Weather[];
   base: string;
