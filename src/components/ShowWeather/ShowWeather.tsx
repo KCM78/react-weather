@@ -1,5 +1,5 @@
 import React from "react";
-import { WeatherProps } from "../types";
+import { WeatherProps } from "../WeatherForm/types";
 
 const ShowWeather: React.FC<WeatherProps> = ({
   city,

@@ -1,5 +1,5 @@
 import React from "react";
-import { FormProps } from "../types";
+import { FormProps } from "./types";
 
 const WeatherForm: React.FC<FormProps> = ({
   handleSubmit,

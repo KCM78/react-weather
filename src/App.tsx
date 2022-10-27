@@ -1,42 +1,32 @@
 import React, { useState, useEffect } from "react";
 import ShowWeather from "./components/ShowWeather/ShowWeather";
 import WeatherForm from "./components/WeatherForm/WeatherForm";
-import getData from "./api/ApiService";
-import { WeatherFormElement, WeatherProps } from "./components/types";
+import ShowError from "./components/ShowError/ShowError";
+import getData from "./services/ApiService";
+import {
+  WeatherFormElement,
+  WeatherProps,
+} from "./components/WeatherForm/types";
+import { ErrorType } from "./services/types";
+import initialWeatherDataState from "./defaults/initialState";
 import "./App.css";
 
 const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04"; // this isn't a good idea
+// const apiKey = "8d2de98e089f1c28e1a22fc19a24ef03";
 
-type WeatherData = WeatherProps;
+type WeatherData = WeatherProps & ErrorType;
 
 const App: React.FC = (): JSX.Element => {
-  const [weatherData, setWeatherData] = useState<WeatherData>({
-    city: "",
-    country: "",
-    temperature: "",
-    humidity: "",
-    description: "",
-    errorFlag: false,
-    errorMessage: "",
-  });
+  const [weatherData, setWeatherData] = useState<WeatherData>(
+    initialWeatherDataState
+  );
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       if (city !== "" && country !== "") {
-        const result = await getData(city, country, apiKey);
-        if (result !== undefined) {
-          setWeatherData({
-            temperature: result.main?.temp.toString(),
-            city: result.name,
-            country: result.sys?.country,
-            humidity: result.main?.humidity.toString(),
-            description: result.weather?.[0].description,
-            errorFlag: result.errorFlag,
-            errorMessage: result.errorMessage,
-          });
-        }
+        setWeatherData({ ...(await getData(city, country, apiKey)) });
       }
     };
     fetchData();
@@ -57,7 +47,7 @@ const App: React.FC = (): JSX.Element => {
       {!weatherData.errorFlag ? (
         <ShowWeather {...weatherData} />
       ) : (
-        <p>there was an error {weatherData.errorMessage}</p>
+        <ShowError error={weatherData.errorMessage} />
       )}
     </div>
   );
