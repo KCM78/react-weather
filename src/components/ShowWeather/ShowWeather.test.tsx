@@ -1,5 +1,5 @@
 import React from "react";
-import { render, RenderResult } from "@testing-library/react";
+import { cleanup, render, RenderResult } from "@testing-library/react";
 import ShowWeather from "./ShowWeather";
 
 const props = {
@@ -20,7 +20,7 @@ describe("WeatherForm", () => {
   });
 
   afterEach(() => {
-    component.unmount();
+    cleanup();
   });
 
   it("should display the city and country", () => {

@@ -11,8 +11,7 @@ import { ErrorType } from "./services/types";
 import initialWeatherDataState from "./defaults/initialState";
 import "./App.css";
 
-const apiKey = "8d2de98e089f1c28e1a22fc19a24ef04"; // this isn't a good idea
-// const apiKey = "8d2de98e089f1c28e1a22fc19a24ef03";
+const apiKey = process.env.REACT_APP_API_KEY as string;
 
 type WeatherData = WeatherProps & ErrorType;
 

@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  act,
-  render,
-  RenderResult,
-  screen,
-  fireEvent,
-} from "@testing-library/react";
+import { render, RenderResult, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import WeatherForm from "./WeatherForm";
 
 const handleSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
@@ -36,11 +31,14 @@ describe("WeatherForm", () => {
     const btn = screen.getByRole("button");
     const city = component.getByPlaceholderText("City...");
     const country = component.getByPlaceholderText("Country...");
-    act(() => {
-      fireEvent.change(city, "York");
-      fireEvent.change(country, "UK");
-      fireEvent.submit(btn);
-      expect(handleSubmit).toHaveBeenCalled();
+
+    userEvent.type(city, "York");
+    userEvent.type(country, "UK");
+    userEvent.click(btn);
+
+    waitFor(() => {
+      expect(handleSubmit).toHaveBeenCalledTimes(1);
+      expect(handleSubmit).toBeCalledWith("York", "UK");
     });
   });
 });
