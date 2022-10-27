@@ -44,9 +44,9 @@ const getData = async (
       return response.json();
     })
     .then((data: CurrentWeatherDataResponse) => parseResponse(data, ""))
-    .catch((error: Error) => {
-      return parseResponse(null, `${error.message}: ${error.cause}`);
-    });
+    .catch((error: Error) =>
+      parseResponse(null, `${error.message}: ${error.cause}`)
+    );
 
   return weatherData;
 };
