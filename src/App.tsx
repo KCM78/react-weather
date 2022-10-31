@@ -25,7 +25,7 @@ const App: React.FC = (): JSX.Element => {
   useEffect(() => {
     const fetchData = async () => {
       if (city !== "" && country !== "") {
-        setWeatherData({ ...(await getData(city, country, apiKey)) });
+        setWeatherData(await getData(city, country, apiKey));
       }
     };
     fetchData();
