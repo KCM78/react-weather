@@ -31,7 +31,7 @@ const getData = async (
   country: string,
   apiKey: string
 ): Promise<WeatherResponse> => {
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}&units=metric`;
 
   const weatherData: WeatherResponse = await fetch(url)
     .then((response) => {
