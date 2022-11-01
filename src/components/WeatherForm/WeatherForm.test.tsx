@@ -1,5 +1,5 @@
 import React from "react";
-import { render, RenderResult, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, RenderResult, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import WeatherForm from "./WeatherForm";
 
@@ -12,7 +12,8 @@ describe("WeatherForm", () => {
   });
 
   afterEach(() => {
-    component.unmount();
+    cleanup();
+    jest.resetAllMocks();
   });
 
   it("should render the city input field", () => {
